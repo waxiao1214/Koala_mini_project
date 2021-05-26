@@ -31,7 +31,14 @@ io.on('connection', async (socket) => {
 
   setInterval(async () => {
     socket.emit('screencapture', await screen.screenshot());
-  }, 100)
+  }, 100) 
+
+  socket.on('capturekey', async (key) => {
+    screen.keyboard.press(key.key);
+    setInterval(async () => {
+      socket.emit('screencapture', await screen.screenshot());
+    }, 100)  
+  })
 });
 
 const PORT = process.env.PORT || 5000;
