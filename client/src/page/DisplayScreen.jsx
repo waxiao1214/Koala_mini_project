@@ -3,9 +3,12 @@ import { SocketContext } from '../context/SocketContext';
 
 const DisplaySreen = () => {
   const { screen } = useContext(SocketContext);
-  return <div>
-    <img src={screen} alt="" />
-  </div>
+  return <>
+    {screen ? 
+      <img src={screen} alt="" /> :
+      <div className="loading">{"Loading please wait... :)"}</div>
+    }
+  </>
 }
 
 export default DisplaySreen;

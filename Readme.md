@@ -13,7 +13,7 @@
 ```
   npx nodemon index.js
 ```
-### &nbsp;&nbsp;&nbsp;&nbsp; `Server will start listen from the client.`
+### &nbsp;&nbsp;&nbsp;&nbsp; `Server will start listen from the client on port 5000.`
 
 
 # Start Client
@@ -23,6 +23,4 @@
   npm run start
 ```
 
-
-
-### &nbsp;&nbsp;&nbsp;&nbsp; Open ``http://localhost:3000`` to view it in the browser.
+### &nbsp;&nbsp;&nbsp;&nbsp; Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
