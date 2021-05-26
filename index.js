@@ -10,19 +10,29 @@ const takeScreen = async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://google.com");
-  const options = {
-    path: 'website.png',
-    omitbackground: true
-  }
-  await page.screenshot(options);
+  return page
 }
 
-takeScreen()
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+})
+
 app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Server is running");
 })
+
+io.on('connection', async (socket) => {
+  let screen = await takeScreen();
+
+  setInterval(async () => {
+    socket.emit('screencapture', await screen.screenshot());
+  }, 100)
+});
 
 const PORT = process.env.PORT || 5000;
 
