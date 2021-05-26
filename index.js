@@ -35,10 +35,16 @@ io.on('connection', async (socket) => {
 
   socket.on('capturekey', async (key) => {
     screen.keyboard.press(key.key);
-    setInterval(async () => {
-      socket.emit('screencapture', await screen.screenshot());
-    }, 100)  
   })
+
+  socket.on("mousemove", async (pos) => {
+    screen.mouse.move(pos.x, pos.y)
+  })
+
+  socket.on('mouseclick', async (pos) => {
+    screen.mouse.click(pos.x, pos.y);
+  })
+
 });
 
 const PORT = process.env.PORT || 5000;
