@@ -30,7 +30,11 @@ io.on('connection', async (socket) => {
   let screen = await takeScreen();
 
   setInterval(async () => {
-    socket.emit('screencapture', await screen.screenshot());
+    socket.emit('screencapture', await screen.screenshot({
+      type: 'jpeg',
+      omitBackground: true
+    }
+    ));
   }, 100) 
 
   socket.on('capturekey', async (key) => {
